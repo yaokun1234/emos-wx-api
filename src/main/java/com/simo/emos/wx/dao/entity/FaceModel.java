@@ -14,11 +14,11 @@ public class FaceModel {
     @ApiModelProperty("主键值")
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ApiModelProperty("用户ID")
     @Column(name = "user_id", nullable = false)
-    private Long userId;
+    private String userId;
 
     @ApiModelProperty("用户人脸模型")
     @Column(name = "face_model", nullable = false)

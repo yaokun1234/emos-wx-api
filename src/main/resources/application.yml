@@ -1,8 +1,19 @@
 server:
   port: 8090
-  servlet:
-    context-path: /emos-api
+#  servlet:
+#      context-path: /emos-api
 spring:
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+  security:
+    user:
+      name: user
+      password: 123456
+    oauth2:
+      resourceserver:
+        jwt:
+          audiences:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -17,6 +28,10 @@ spring:
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
+      filter:
+        wall:
+          config:
+            condition-op-xor-allow:
 
   jpa:
     show-sql: true
@@ -25,10 +40,10 @@ spring:
       naming:
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
   data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: emos
+#    mongodb:
+#      host: localhost
+#      port: 27017
+#      database: emos
 #      authentication-database: admin
 #      username: admin
 #      password: 123456
@@ -43,4 +58,15 @@ spring:
           max-idle: 16
           min-idle: 8
 
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+wx:
+  appid:
+  app-secret:
+  get-openid-url: https://api.weixin.qq.com/sns/jscode2session
 
+token:
+  expire: 30

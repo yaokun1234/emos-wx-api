@@ -20,11 +20,11 @@ public class Checkin {
     @ApiModelProperty("主键")
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ApiModelProperty("用户ID")
     @Column(name = "user_id", nullable = false)
-    private Long userId;
+    private String userId;
 
     @Column(name = "address")
     @ApiModelProperty("签到地址")
@@ -53,6 +53,10 @@ public class Checkin {
     @Column(name = "risk")
     @ApiModelProperty("风险等级")
     private Long risk;
+
+    @ApiModelProperty("签到类型 1_签到 2_签退")
+    @Column(name = "checkin_type", nullable = false)
+    private int checkinType;
 
     @ApiModelProperty("签到日期")
     @Column(name = "date", nullable = false)

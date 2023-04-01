@@ -19,7 +19,7 @@ public class City {
     @ApiModelProperty("主键")
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ApiModelProperty("城市名称")
     @Column(name = "city", nullable = false)

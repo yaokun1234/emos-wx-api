@@ -19,7 +19,7 @@ public class Action {
     @ApiModelProperty("主键")
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ApiModelProperty("行为编号")
     @Column(name = "action_code", nullable = false)

@@ -14,7 +14,7 @@ public class Permission {
     @ApiModelProperty("主键")
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ApiModelProperty("权限")
     @Column(name = "permission_name", nullable = false)

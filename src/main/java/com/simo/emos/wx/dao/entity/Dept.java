@@ -14,7 +14,7 @@ public class Dept {
     @ApiModelProperty("主键")
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ApiModelProperty("部门名称")
     @Column(name = "dept_name", nullable = false)

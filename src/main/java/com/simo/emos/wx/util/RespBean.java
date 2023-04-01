@@ -19,7 +19,7 @@ public class RespBean implements Serializable {
     @ApiModelProperty(value = "响应数据")
     private Object data;
 
-    private static final String SUCCESS = "0";
+    private static final String SUCCESS = "200";
 
     private static final String ERROR = "500";
 

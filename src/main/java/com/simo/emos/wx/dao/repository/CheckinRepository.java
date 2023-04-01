@@ -4,6 +4,9 @@ import com.simo.emos.wx.dao.entity.Checkin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface CheckinRepository extends JpaRepository<Checkin, Long>, JpaSpecificationExecutor<Checkin> {
+import java.util.Date;
 
+public interface CheckinRepository extends JpaRepository<Checkin, String>, JpaSpecificationExecutor<Checkin> {
+
+    boolean existsByUserIdAndCheckinTypeAndDate(String userId, int checkinType, Date date);
 }

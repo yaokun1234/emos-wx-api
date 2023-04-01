@@ -19,7 +19,7 @@ public class Module {
     @ApiModelProperty("主键")
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ApiModelProperty("模块编号")
     @Column(name = "module_code", nullable = false)

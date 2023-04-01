@@ -14,7 +14,7 @@ public class SysConfig {
     @ApiModelProperty("主键")
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ApiModelProperty("参数名")
     @Column(name = "param_key", nullable = false)

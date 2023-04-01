@@ -15,7 +15,7 @@ public class Workday {
     @ApiModelProperty("主键")
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
 
     @Column(name = "date")
     @ApiModelProperty("日期")
