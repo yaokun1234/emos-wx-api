@@ -64,7 +64,7 @@ spring:
     username: guest
     password: guest
 wx:
-  appid:
+  appid: 1
   app-secret:
   get-openid-url: https://api.weixin.qq.com/sns/jscode2session
 
