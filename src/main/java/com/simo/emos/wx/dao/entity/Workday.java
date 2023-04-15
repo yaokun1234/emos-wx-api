@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Data
 @Entity
@@ -19,6 +18,6 @@ public class Workday {
 
     @Column(name = "date")
     @ApiModelProperty("日期")
-    private Date date;
+    private String date;
 
 }

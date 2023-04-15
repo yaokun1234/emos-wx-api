@@ -36,8 +36,6 @@ public class TokenAuthenticationProvider implements AuthenticationProvider {
             return null;
         }
         String openId = TokenUtil.verifyToken(token);
-
-
         User user = userService.findByOpenId(openId);
         Set<String> permissions = userService.searchUserPermissions(openId);
         List<SimpleGrantedAuthority> authorities = permissions.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());

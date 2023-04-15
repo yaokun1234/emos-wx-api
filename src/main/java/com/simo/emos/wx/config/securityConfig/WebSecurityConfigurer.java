@@ -44,7 +44,11 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().mvcMatchers("/user/**");
+        web.ignoring().mvcMatchers("/user/register");
+        web.ignoring().mvcMatchers("/user/login");
+//        web.ignoring().mvcMatchers("/checkin/validCanCheckIn");
+        web.ignoring().mvcMatchers("/swagger-ui/index.html");
+        web.ignoring().mvcMatchers("/v2/api-docs");
     }
 
     @Override

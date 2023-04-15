@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 /**
  * 节假日表
@@ -24,6 +23,6 @@ public class Holidays {
 
     @ApiModelProperty("日期")
     @Column(name = "date", nullable = false)
-    private Date date;
+    private String date;
 
 }

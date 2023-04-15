@@ -22,7 +22,7 @@ public class City {
     private String id;
 
     @ApiModelProperty("城市名称")
-    @Column(name = "city", nullable = false)
+    @Column(name = "city", nullable = false,columnDefinition = "comment '城市名称中文'")
     private String city;
 
     @ApiModelProperty("拼音简称")

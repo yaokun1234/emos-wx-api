@@ -68,7 +68,7 @@ public class User implements UserDetails {
 
     @Column(name = "dept_id")
     @ApiModelProperty("部门编号")
-    private Long deptId;
+    private String deptId;
 
     @ApiModelProperty("状态 0_可用 1_不可用")
     @Column(name = "status", nullable = false)

@@ -2,6 +2,7 @@ package com.simo.emos.wx.service;
 
 import com.simo.emos.wx.config.exception.ConditionException;
 import com.simo.emos.wx.controller.form.RegisterForm;
+import com.simo.emos.wx.dao.entity.Dept;
 import com.simo.emos.wx.dao.entity.User;
 import com.simo.emos.wx.dao.entity.constant.UserConstant;
 import com.simo.emos.wx.dao.repository.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -26,6 +28,8 @@ public class UserService {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @Autowired
+    private DeptService deptService;
     @Value(value = "${token.expire}")
     private int expire;
 
@@ -89,4 +93,15 @@ public class UserService {
     public User findByOpenId(String openId) {
         return userRepository.findByOpenId(openId);
     }
+
+    public HashMap searchUserSummary(User user) {
+        Dept dept = deptService.findById(user.getDeptId());
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name",user.getName());
+        map.put("phone",user.getPhoto());
+        map.put("deptName",dept.getDeptName());
+        return map;
+    }
+
+
 }

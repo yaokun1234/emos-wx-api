@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * 签到表
@@ -19,12 +20,12 @@ public class Checkin {
     @Id
     @ApiModelProperty("主键")
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @ApiModelProperty("用户ID")
-    @Column(name = "user_id", nullable = false)
-    private String userId;
+    @Column(name = "open_id", nullable = false)
+    private String openId;
 
     @Column(name = "address")
     @ApiModelProperty("签到地址")
@@ -46,7 +47,7 @@ public class Checkin {
     @Column(name = "district")
     private String district;
 
-    @ApiModelProperty("考勤结果")
+    @ApiModelProperty("考勤结果  1_正常,2_迟早")
     @Column(name = "status", nullable = false)
     private Integer status;
 
@@ -60,10 +61,14 @@ public class Checkin {
 
     @ApiModelProperty("签到日期")
     @Column(name = "date", nullable = false)
-    private Date date;
+    private String date;
 
     @ApiModelProperty("签到时间")
     @Column(name = "create_time", nullable = false)
     private Date createTime;
 
+    public Checkin() {
+        this.id = UUID.randomUUID().toString();
+        this.createTime = new Date();
+    }
 }

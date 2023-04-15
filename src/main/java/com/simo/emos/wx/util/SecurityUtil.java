@@ -1,6 +1,8 @@
 package com.simo.emos.wx.util;
 
+import com.simo.emos.wx.config.exception.ConditionException;
 import com.simo.emos.wx.dao.entity.User;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
@@ -14,6 +16,12 @@ public class SecurityUtil {
 
 
     public static User getCurrentUser(){
-        return (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null){
+            return (User)authentication.getPrincipal();
+        }else{
+            throw new ConditionException("请先登陆！！");
+        }
+
     }
 }
