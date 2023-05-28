@@ -45,7 +45,6 @@ public class CheckinController {
 
     @GetMapping("/validCanCheckIn")
     @ApiOperation("查看用户今天是否可以签到")
-//    @PreAuthorize("hasRole('ROOT')")
     public RespBean validCanCheckIn(){
         User user = SecurityUtil.getCurrentUser();
         String checkin = checkinService.validCanCheckIn(user.getOpenId());

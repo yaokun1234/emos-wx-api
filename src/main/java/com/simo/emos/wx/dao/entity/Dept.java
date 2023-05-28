@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,5 +20,9 @@ public class Dept {
     @ApiModelProperty("部门名称")
     @Column(name = "dept_name", nullable = false)
     private String deptName;
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "dept_id")
+    private List<User> members;
 
 }

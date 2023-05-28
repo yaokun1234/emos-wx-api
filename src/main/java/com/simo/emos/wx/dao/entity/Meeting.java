@@ -5,8 +5,9 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * 会议表
@@ -20,7 +21,6 @@ public class Meeting {
     @Id
     @ApiModelProperty("主键")
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @Column(name = "uuid")
@@ -33,30 +33,30 @@ public class Meeting {
 
     @ApiModelProperty("创建人ID")
     @Column(name = "creator_id", nullable = false)
-    private Long creatorId;
+    private String creatorId;
 
     @ApiModelProperty("日期")
-    @Column(name = "date", nullable = false)
-    private Date date;
+    @Column(name = "date")
+    private String date;
 
     @Column(name = "place")
     @ApiModelProperty("开会地点")
     private String place;
 
     @ApiModelProperty("开始时间")
-    @Column(name = "start", nullable = false)
-    private Time start;
+    @Column(name = "start")
+    private String start;
 
     @ApiModelProperty("结束时间")
-    @Column(name = "end", nullable = false)
-    private Time end;
+    @Column(name = "end")
+    private String end;
 
     @ApiModelProperty("会议类型（1在线会议，2线下会议）")
-    @Column(name = "type", nullable = false)
+    @Column(name = "type")
     private Integer type;
 
     @ApiModelProperty("会议内容")
-    @Column(name = "desc", nullable = false)
+    @Column(name = "meet_desc")
     private String desc;
 
     @ApiModelProperty("工作流实例ID")
@@ -64,15 +64,29 @@ public class Meeting {
     private String instanceId;
 
     @ApiModelProperty("状态（1未开始，2进行中，3已结束）")
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private Integer status;
 
     @ApiModelProperty("创建时间")
-    @Column(name = "create_time", nullable = false)
+    @Column(name = "create_time")
     private Date createTime;
 
-    @ApiModelProperty("参与者")
-    @Column(name = "members", nullable = false)
-    private String members;
+    @ApiModelProperty("修改时间")
+    @Column(name = "update_time")
+    private Date updateTime;
 
+    @ApiModelProperty("创建人")
+    @Transient
+    private User creator;
+
+    @ApiModelProperty("参会人")
+    @Transient
+    private List<User> members;
+
+
+
+    public Meeting() {
+        this.id = UUID.randomUUID().toString();
+        this.createTime = new Date();
+    }
 }

@@ -31,8 +31,14 @@ public class TokenAuthenticationProvider implements AuthenticationProvider {
         }
 
         // 从 TokenAuthentication 中获取 token
-        String token = authentication.getCredentials().toString();
-        if (!StringUtils.hasText(token)) {
+        Object credentials = authentication.getCredentials();
+        String token = "";
+        if (credentials != null) {
+            token = credentials.toString();
+            if(!StringUtils.hasText(token)){
+                return null;
+            }
+        }else {
             return null;
         }
         String openId = TokenUtil.verifyToken(token);

@@ -1,6 +1,5 @@
 package com.simo.emos.wx.dao.entity;
 
-import com.simo.emos.wx.util.TokenUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -32,6 +31,16 @@ public class User implements UserDetails {
     @Column(name = "open_id")
     @ApiModelProperty("长期授权字符串")
     private String openId;
+
+
+    @ApiModelProperty("用户名")
+    @Column(name = "username")
+    private String username;
+
+
+    @ApiModelProperty("密码")
+    @Column(name = "password")
+    private String password;
 
     @ApiModelProperty("昵称")
     @Column(name = "nickname")
@@ -70,7 +79,7 @@ public class User implements UserDetails {
     @ApiModelProperty("部门编号")
     private String deptId;
 
-    @ApiModelProperty("状态 0_可用 1_不可用")
+    @ApiModelProperty("状态 0_禁用 1_在职 2_离职")
     @Column(name = "status", nullable = false)
     private Integer status;
 
@@ -86,6 +95,13 @@ public class User implements UserDetails {
     @Column(name = "role", nullable = false)
     private String role;
 
+//    @ApiModelProperty("部门")
+//    @ManyToOne()
+//    @JoinColumn(name = "dept_id")
+//    @JsonIgnoreProperties("members")
+//    private Dept dept;
+
+
     public User() {
         this.createTime = new Date();
         this.updateTime = new Date();
@@ -99,7 +115,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return TokenUtil.generateToken(openId);
+        return password;
     }
 
     @Override

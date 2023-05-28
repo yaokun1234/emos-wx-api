@@ -5,6 +5,8 @@ import com.simo.emos.wx.dao.repository.DeptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DeptService {
 
@@ -14,5 +16,9 @@ public class DeptService {
 
     public Dept findById(String deptId) {
         return deptRepository.findById(deptId).get();
+    }
+
+    public List<Dept> searchUserGroupByDept(String keyword) {
+        return deptRepository.findAll();
     }
 }

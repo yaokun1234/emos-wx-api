@@ -3,17 +3,18 @@ package com.simo.emos.wx.service;
 import com.simo.emos.wx.config.exception.ConditionException;
 import com.simo.emos.wx.controller.form.RegisterForm;
 import com.simo.emos.wx.dao.entity.Dept;
+import com.simo.emos.wx.dao.entity.MessageEntity;
 import com.simo.emos.wx.dao.entity.User;
 import com.simo.emos.wx.dao.entity.constant.UserConstant;
 import com.simo.emos.wx.dao.repository.UserRepository;
+import com.simo.emos.wx.task.MessageTask;
 import com.simo.emos.wx.util.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -30,6 +31,9 @@ public class UserService {
 
     @Autowired
     private DeptService deptService;
+
+    @Autowired
+    private MessageTask messageTask;
     @Value(value = "${token.expire}")
     private int expire;
 
@@ -66,6 +70,11 @@ public class UserService {
             user.setRoot(false);
         }
         User dbUser = userRepository.save(user);
+        MessageEntity entity=new MessageEntity();
+        entity.setSenderId("0");
+        entity.setSenderName("系统消息");
+        entity.setSendTime(new Date());
+        messageTask.sendAsync(openid,entity);
         return dbUser;
     }
 
@@ -98,10 +107,22 @@ public class UserService {
         Dept dept = deptService.findById(user.getDeptId());
         HashMap<String, String> map = new HashMap<>();
         map.put("name",user.getName());
-        map.put("phone",user.getPhoto());
+        map.put("photo",user.getPhoto());
         map.put("deptName",dept.getDeptName());
         return map;
     }
 
 
+    public List<User> findByOpenIds(List<String> members) {
+        return userRepository.findByOpenIdIn(members);
+    }
+
+    public List<Dept> searchUserGroupByDept(String keyword) {
+
+        return deptService.searchUserGroupByDept(keyword);
+    }
+
+    public List<User> searchMembers(List param) {
+        return userRepository.findByOpenIdIn(param);
+    }
 }

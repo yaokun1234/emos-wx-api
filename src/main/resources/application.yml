@@ -37,14 +37,14 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-      naming:
-        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   data:
-#    mongodb:
-#      host: localhost
-#      port: 27017
-#      database: emos
-#      authentication-database: admin
+    mongodb:
+      host: localhost
+      port: 27017
+      database: emos
+#      authentication-database: articledb
 #      username: admin
 #      password: 123456
 
@@ -64,9 +64,11 @@ spring:
     username: guest
     password: guest
 wx:
-  appid: 1
-  app-secret:
+  appid: wx3a1be64c1bcd63be
+  app-secret: 75ad3359ef585566daf010d06ada1d78
   get-openid-url: https://api.weixin.qq.com/sns/jscode2session
 
 token:
   expire: 30
+emos:
+  image-folder: /Users/simo/Java/imooc/image

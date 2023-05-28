@@ -2,6 +2,7 @@ package com.simo.emos.wx.config.exception.hander;
 
 import com.simo.emos.wx.config.exception.ConditionException;
 import com.simo.emos.wx.util.RespBean;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
  **/
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalControllerAdvice {
 
     private static final String BAD_REQUEST_MSG = "客户端请求参数错误";
@@ -33,6 +35,7 @@ public class GlobalControllerAdvice {
         List<String> collect = fieldErrors.stream()
                 .map(o -> o.getField()+":"+o.getDefaultMessage())
                 .collect(Collectors.toList());
+        log.error(collect.toString());
         return new RespBean(HttpStatus.BAD_REQUEST.value()+"", BAD_REQUEST_MSG, collect);
     }
     // <2> 处理 json 请求体调用接口校验失败抛出的异常
@@ -42,6 +45,7 @@ public class GlobalControllerAdvice {
         List<String> collect = fieldErrors.stream()
                 .map(o -> o.getField()+":"+o.getDefaultMessage())
                 .collect(Collectors.toList());
+        log.error(collect.toString());
         return new RespBean(HttpStatus.BAD_REQUEST.value()+"", BAD_REQUEST_MSG, collect);
     }
     // <3> 处理单个参数校验失败抛出的异常
@@ -51,12 +55,13 @@ public class GlobalControllerAdvice {
         List<String> collect = constraintViolations.stream()
                 .map(o -> o.getMessage())
                 .collect(Collectors.toList());
+        log.error(collect.toString());
         return new RespBean(HttpStatus.BAD_REQUEST.value()+"", BAD_REQUEST_MSG, collect);
     }
 
     @ExceptionHandler(ConditionException.class)
     public RespBean ConditionExceptionHandler(ConditionException e) {
-
+        log.error(e.getMessage());
         return RespBean.error(e.getMessage());
     }
 }

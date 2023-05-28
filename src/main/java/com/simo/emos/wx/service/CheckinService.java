@@ -81,9 +81,6 @@ public class CheckinService {
                 return "可以签到";
             }
         }
-
-
-
     }
 
     public void checkin(HashMap param) {
