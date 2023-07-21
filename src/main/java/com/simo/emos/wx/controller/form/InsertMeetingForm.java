@@ -18,10 +18,10 @@ public class InsertMeetingForm {
     private String date;
     private String place;
     @NotNull
-    @Pattern(regexp = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$")
+//    @Pattern(regexp = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$")
     private String start;
     @NotNull
-    @Pattern(regexp = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$")
+//    @Pattern(regexp = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$")
     private String end;
 
     @Range(min = 1,max = 2)

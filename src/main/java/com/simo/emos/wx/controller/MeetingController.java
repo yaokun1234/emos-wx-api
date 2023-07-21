@@ -98,7 +98,7 @@ public class MeetingController {
         meeting.setEnd(form.getEnd());
         meeting.setType(form.getType());
         meeting.setDesc(form.getDesc());
-        meeting.setStatus(3);
+        meeting.setStatus(1);
         meeting.setUpdateTime(new Date() );
         meetingService.updateMeetingInfo(meeting,form.getMembers());
         return RespBean.success();
