@@ -29,7 +29,7 @@ public class User implements UserDetails {
     private String id;
 
     @Column(name = "open_id")
-    @ApiModelProperty("长期授权字符串")
+//    @ApiModelProperty("长期授权字符串")
     private String openId;
 
 
