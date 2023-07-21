@@ -17,7 +17,7 @@ public class Dept {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @ApiModelProperty("部门名称")
+    @ApiModelProperty("部门名称1")
     @Column(name = "dept_name", nullable = false)
     private String deptName;
 
